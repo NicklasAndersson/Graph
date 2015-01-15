@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="PathFinder:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PathFinder_jar</output-path>
+    <root id="archive" name="PathFinder.jar">
+      <element id="module-output" name="PathFinder" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src" />
+    </root>
+  </artifact>
+</component>

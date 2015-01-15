@@ -1,18 +1,21 @@
 package graphs;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Created by Nicklas on 2015-01-14.
  */
-public class MatrixGraph<N extends Comparable<N>> implements Graph<N> {
+public class MatrixGraph<N extends Comparable<N>> implements Graph<N>, Serializable {
+    private static final long serialVersionUID = -8673452628753248062L;
+
     private int[][] graph;
     private Map<N, Integer> nodes = new HashMap<N, Integer>();
     private Map<Point, String> edgeName = new HashMap<Point, String>();
     private int numberOfNodes = 0;
 
-    MatrixGraph(int i) {
+    public MatrixGraph(int i) {
         graph = new int[i][i];
 
         for (int x = 0; x < i; x++) {
@@ -30,8 +33,8 @@ public class MatrixGraph<N extends Comparable<N>> implements Graph<N> {
     @Override
     public void connect(N from, N to, String name, Integer weight) throws NoSuchElementException {
         if (nodes.containsKey(from) && nodes.containsKey(to)) {
-            if (weight < 0) {
-                if (graph[nodes.get(from)][nodes.get(to)] < 0 && graph[nodes.get(to)][nodes.get(from)] < 0) {
+            if (weight > 0) {
+                if (graph[nodes.get(from)][nodes.get(to)] == 0 && graph[nodes.get(to)][nodes.get(from)] == 0) {
                     Integer toI = nodes.get(to);
                     Integer fromI = nodes.get(from);
                     graph[fromI][toI] = weight;
@@ -53,7 +56,7 @@ public class MatrixGraph<N extends Comparable<N>> implements Graph<N> {
         if (nodes.containsKey(node1) && nodes.containsKey(node2)) {
             Integer toI = nodes.get(node1);
             Integer fromI = nodes.get(node2);
-            if (graph[nodes.get(node1)][nodes.get(node2)] < 0 && graph[nodes.get(node2)][nodes.get(node1)] < 0) {
+            if (graph[nodes.get(node1)][nodes.get(node2)] > 0 && graph[nodes.get(node2)][nodes.get(node1)] > 0) {
                 graph[fromI][toI] = 0;
                 graph[toI][fromI] = 0;
                 if (edgeName.containsKey(new Point(toI, fromI)) || edgeName.containsKey(new Point(fromI, toI))) {

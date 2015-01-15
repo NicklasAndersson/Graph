@@ -2,6 +2,7 @@ import graphs.Edge;
 import graphs.GraphMethods;
 import graphs.ListGraph;
 
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -12,6 +13,10 @@ import java.util.Set;
 
 /**
  * Created by Nicklas on 2015-01-04.
+ *
+ * Inlämningsuppgift PROG2
+ * Betygsanspråk: A
+ * 
  */
 class PathFinderGUI extends JFrame{
     private String currentFile = null;
@@ -19,6 +24,7 @@ class PathFinderGUI extends JFrame{
     private JFileChooser jfcSO;
 
     private ListGraph<City> graph = new ListGraph<City>();
+
     private boolean stateChanged = false;
     private Map map;
 
@@ -501,7 +507,7 @@ class PathFinderGUI extends JFrame{
 
             Integer total = 0;
             for(Edge edge: GraphMethods.getPath(c1,c2,graph)){
-                total =+ edge.getWeight();
+                total = total + edge.getWeight();
             }
             t = t + "\n Total tid:  " + total.toString();
 
